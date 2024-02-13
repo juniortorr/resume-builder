@@ -16,9 +16,7 @@ function App() {
         currentGeneral={currentGeneral}
       />
       <section className="current-resume-container">
-        <div className="updated-fields">
-          <Resume currentGeneral={currentGeneral} />
-        </div>
+        <Resume currentGeneral={currentGeneral} />
       </section>
     </main>
   );

@@ -1,8 +1,8 @@
 const generalInfo = {
-  firstName: 'test',
-  lastName: 'test',
-  placeOfBirth: 'Brooklyn',
-  dateOfBirth: '04-10-01',
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  placeOfBirth: 'City of Birth',
+  dateOfBirth: 'D.O.B',
 };
 
 export default generalInfo;
