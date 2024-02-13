@@ -1,14 +1,9 @@
 import Form from './Form';
-function Sidebar({ generalInfo, setCurrentGeneral, currentGeneral }) {
+function Sidebar({ setCurrentGeneral, currentGeneral, setCurrentEducation, currentEducation }) {
   return (
     <section className="sidebar">
-      <Form
-        info={generalInfo}
-        setCurrentGeneral={setCurrentGeneral}
-        name="General Information"
-        currentGeneral={currentGeneral}
-      />
-      {/* <Form info={education} name="Education" /> */}
+      <Form setCurrent={setCurrentGeneral} name="General Information" current={currentGeneral} />
+      <Form setCurrent={setCurrentEducation} current={currentEducation} name="Education" />
     </section>
   );
 }

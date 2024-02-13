@@ -1,6 +1,6 @@
 const education = {
-  highestDegree: 'GED',
-  highschool: 'Highschool Attended',
+  highestDegree: 'Highest Degree:',
+  highschool: 'Highschool Attended:',
 };
 
 export default education;

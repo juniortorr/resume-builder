@@ -1,16 +1,16 @@
 import { useState } from 'react';
 
-function Form({ info, name, setCurrentGeneral, currentGeneral }) {
+function Form({ name, setCurrent, current }) {
   const [isActive, setIsActive] = useState(false);
-  const keys = Object.keys(info);
+  const keys = Object.keys(current);
   const objectToMap = (obj) => new Map(Object.entries(obj));
   const mapToObject = (map) => Object.fromEntries(map.entries());
 
   function handleChange(e) {
-    const map = objectToMap(currentGeneral);
+    const map = objectToMap(current);
     map.set(e.target.id, e.target.value);
 
-    setCurrentGeneral({
+    setCurrent({
       ...mapToObject(map),
     });
   }
