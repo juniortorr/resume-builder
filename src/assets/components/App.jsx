@@ -9,6 +9,7 @@ import practicalExperience from '../../data/practical-experience';
 function App() {
   const [currentGeneral, setCurrentGeneral] = useState(generalInfo);
   const [currentEducation, setCurrentEducation] = useState(education);
+  const [currentExperience, setCurrentExperience] = useState(practicalExperience);
   return (
     <main className="main-container">
       <Sidebar
@@ -18,9 +19,15 @@ function App() {
         currentGeneral={currentGeneral}
         setCurrentEducation={setCurrentEducation}
         currentEducation={currentEducation}
+        currentExperience={currentExperience}
+        setCurrentExperience={setCurrentExperience}
       />
       <section className="current-resume-container">
-        <Resume currentGeneral={currentGeneral} currentEducation={currentEducation} />
+        <Resume
+          currentGeneral={currentGeneral}
+          currentEducation={currentEducation}
+          currentExperience={currentExperience}
+        />
       </section>
     </main>
   );

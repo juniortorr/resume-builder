@@ -1,6 +1,6 @@
 import './Resume.css';
 
-function Resume({ currentGeneral, currentEducation }) {
+function Resume({ currentGeneral, currentEducation, currentExperience }) {
   return (
     <div className="resume">
       <div className="updated-general">
@@ -14,6 +14,10 @@ function Resume({ currentGeneral, currentEducation }) {
         <h2 className="education-heading">Education</h2>
         <p>{currentEducation.highestDegree}</p>
         <p>{currentEducation.highschool}</p>
+      </div>
+      <div className="updated-experience">
+        <h2 className="experience-heading">Relevant Experience</h2>
+        <p>{currentExperience.relevantInfo}</p>
       </div>
     </div>
   );
