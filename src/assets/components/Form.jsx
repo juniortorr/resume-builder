@@ -2,6 +2,11 @@ import { useState } from 'react';
 
 // statuses = saved, editing
 
+// TO GET LABELS THAT DONT CHANGE
+// You should probably load in the actual original
+// object for each one and make labels for each input
+// that use the original field names from original objects
+
 function Form({ name, setCurrent, current }) {
   const [isActive, setIsActive] = useState(false);
   const [status, setStatus] = useState('initial');
