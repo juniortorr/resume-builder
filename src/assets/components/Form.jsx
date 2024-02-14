@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
+// statuses = saved, editing
+
 function Form({ name, setCurrent, current }) {
   const [isActive, setIsActive] = useState(false);
   const [status, setStatus] = useState('initial');
   const objectToMap = (obj) => new Map(Object.entries(obj));
   const mapToObject = (map) => Object.fromEntries(map.entries());
-  const statuses = ['initial', 'saved', 'editing'];
   const inputs = [];
   let index = 0;
 
   function handleChange(e) {
     const map = objectToMap(current);
     map.set(e.target.id, e.target.value);
-
     setCurrent({
       ...mapToObject(map),
     });
@@ -20,25 +20,55 @@ function Form({ name, setCurrent, current }) {
   function handleClick() {
     setIsActive(!isActive);
   }
+  function handleSave() {
+    setStatus('saved');
+  }
+  function handleEdit() {
+    setStatus('editing');
+  }
+
   for (const [key, value] of Object.entries(current)) {
-    console.log(key);
-    if (value === 'Relevant Information') {
-      inputs.push(
-        <textarea
-          name={key}
-          id={key}
-          key={index}
-          onChange={handleChange}
-          value={value}
-          cols="30"
-          rows="10"
-        ></textarea>
-      );
+    if (status === 'saved') {
+      if (value === 'Relevant Information') {
+        inputs.push(
+          <textarea
+            name={key}
+            id={key}
+            key={index}
+            onChange={handleChange}
+            value={value}
+            cols="30"
+            rows="10"
+            disabled
+          ></textarea>
+        );
+      } else {
+        inputs.push(
+          <input disabled type="text" key={index} value={value} onChange={handleChange} id={key} />
+        );
+      }
     } else {
-      inputs.push(<input type="text" key={index} value={value} onChange={handleChange} id={key} />);
+      if (value === 'Relevant Information') {
+        inputs.push(
+          <textarea
+            name={key}
+            id={key}
+            key={index}
+            onChange={handleChange}
+            value={value}
+            cols="30"
+            rows="10"
+          ></textarea>
+        );
+      } else {
+        inputs.push(
+          <input type="text" key={index} value={value} onChange={handleChange} id={key} />
+        );
+      }
     }
     index += 1;
   }
+
   if (isActive === false) {
     return <button onClick={handleClick}>{name}</button>;
   }
@@ -46,16 +76,18 @@ function Form({ name, setCurrent, current }) {
     return (
       <>
         <button onClick={handleClick}>{name}</button>
-        <form action="/">{inputs}</form>
+        <form action="/" onSubmit={handleSave}>
+          {inputs}
+        </form>
+        <button type="submit" onClick={handleSave}>
+          Save
+        </button>
+        <button type="button" onClick={handleEdit}>
+          Edit
+        </button>
       </>
     );
   }
 }
 
 export default Form;
-
-//             if (key === 'relevantInfo') {
-// return (
-
-// );
-//
