@@ -2,9 +2,12 @@ import { useState } from 'react';
 
 function Form({ name, setCurrent, current }) {
   const [isActive, setIsActive] = useState(false);
-  const keys = Object.keys(current);
+  const [status, setStatus] = useState('initial');
   const objectToMap = (obj) => new Map(Object.entries(obj));
   const mapToObject = (map) => Object.fromEntries(map.entries());
+  const statuses = ['initial', 'saved', 'editing'];
+  const inputs = [];
+  let index = 0;
 
   function handleChange(e) {
     const map = objectToMap(current);
@@ -17,7 +20,25 @@ function Form({ name, setCurrent, current }) {
   function handleClick() {
     setIsActive(!isActive);
   }
-
+  for (const [key, value] of Object.entries(current)) {
+    console.log(key);
+    if (value === 'Relevant Information') {
+      inputs.push(
+        <textarea
+          name={key}
+          id={key}
+          key={index}
+          onChange={handleChange}
+          value={value}
+          cols="30"
+          rows="10"
+        ></textarea>
+      );
+    } else {
+      inputs.push(<input type="text" key={index} value={value} onChange={handleChange} id={key} />);
+    }
+    index += 1;
+  }
   if (isActive === false) {
     return <button onClick={handleClick}>{name}</button>;
   }
@@ -25,17 +46,16 @@ function Form({ name, setCurrent, current }) {
     return (
       <>
         <button onClick={handleClick}>{name}</button>
-        <form action="/">
-          {keys.map((key, index) => {
-            console.log(key);
-            return (
-              <input type="text" key={index} placeholder={key} onChange={handleChange} id={key} />
-            );
-          })}
-        </form>
+        <form action="/">{inputs}</form>
       </>
     );
   }
 }
 
 export default Form;
+
+//             if (key === 'relevantInfo') {
+// return (
+
+// );
+//
